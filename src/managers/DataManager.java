@@ -26,9 +26,9 @@ import managers.interfaces.SaveManagerInterface;
  * @author Kasutaja
  */
 public class DataManager implements SaveManagerInterface{
-    private final String FILENAME_CUSTOMERS = "files/MyCustomers";
-    private final String FILENAME_PRODUCTS = "files/MyProducts";
-    private final String FILENAME_PURCHASES = "files/MyPurchases";
+    private final String FILENAME_CUSTOMERS = "files/Customers";
+    private final String FILENAME_PRODUCTS = "files/Products";
+    private final String FILENAME_PURCHASES = "files/Orders";
     private final File file;
 
     public DataManager() {
@@ -44,9 +44,9 @@ public class DataManager implements SaveManagerInterface{
             objectOutputStream.writeObject(customers);
             objectOutputStream.flush();
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Нет такого файла", ex);
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "There is no such file", ex);
         } catch (IOException ex) {
-            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Ошибка ввода / вывода", ex);
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Error input / output", ex);
         }
     }
     
@@ -58,11 +58,11 @@ public class DataManager implements SaveManagerInterface{
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             customers = (List<Customer>) objectInputStream.readObject();
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Нет такого файла", ex);
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "There is no such file", ex);
         } catch (IOException ex) {
-            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Ошибка ввода/вывода", ex);
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Error input / output", ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Нет такого класса", ex);
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "There is no such class", ex);
         }
         return customers;
     }
@@ -75,9 +75,9 @@ public class DataManager implements SaveManagerInterface{
             objectOutputStream.writeObject(products);
             objectOutputStream.flush();
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Нет такого файла", ex);
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "There is no such file", ex);
         } catch (IOException ex) {
-            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Ошибка ввода / вывода", ex);
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Error input / output", ex);
         }
     }
 
@@ -89,11 +89,11 @@ public class DataManager implements SaveManagerInterface{
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             products = (List<Product>) objectInputStream.readObject();
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Нет такого файла", ex);
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "There is no such file", ex);
         } catch (IOException ex) {
-            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Ошибка ввода/вывода", ex);
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Error input / output", ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Нет такого класса", ex);
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "There is no such class", ex);
         }
         return products;
     }
@@ -106,9 +106,9 @@ public class DataManager implements SaveManagerInterface{
             objectOutputStream.writeObject(purchases);
             objectOutputStream.flush();
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Нет такого файла", ex);
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "There is no such file", ex);
         } catch (IOException ex) {
-            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Ошибка ввода / вывода", ex);
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Error input / output", ex);
         }
     }
      
@@ -120,11 +120,11 @@ public class DataManager implements SaveManagerInterface{
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             purchases = (List<Orders>) objectInputStream.readObject();
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Нет такого файла", ex);
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "There is no such file", ex);
         } catch (IOException ex) {
-            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Ошибка ввода/вывода", ex);
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Error input / output", ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Нет такого класса", ex);
+            Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "There is no such class", ex);
         }
         return purchases;
     }

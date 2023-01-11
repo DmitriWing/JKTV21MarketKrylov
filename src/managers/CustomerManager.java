@@ -28,14 +28,14 @@ public class CustomerManager {
         customer.setLastname(scanner.nextLine());
         System.out.print("Phone number: ");
         customer.setPhone(scanner.nextLine());
-        System.out.println("How mach money in wallet?\n(has to be integer) ");
+        System.out.println("How much money in wallet? (has to be integer) ");
         customer.setMoney(scanner.nextInt());
         return customer;
     }
 
     public void printListCustomers(List<Customer> customers) {
         for (int i = 0; i < customers.size(); i++) {
-            System.out.printf("%d. %s  %s. Phone: %s Money: %d%n",
+            System.out.printf("%d. %s  %s,  Phone: %s,  Money: %d, %n",
                     i+1,
                     customers.get(i).getFirstname(),
                     customers.get(i).getLastname(),
@@ -52,7 +52,7 @@ public class CustomerManager {
         int numberCustomer = scanner.nextInt(); scanner.nextLine();
         
         System.out.printf("The customer has %d eur%n",customers.get(numberCustomer - 1).getMoney());
-        System.out.println("How many would you like to deposite? ");
+        System.out.println("How many would you like to deposite? (has to be integer):");
         int addBalance = scanner.nextInt(); scanner.nextLine();
         customers.get(numberCustomer - 1).setMoney(customers.get(numberCustomer - 1).getMoney() + addBalance);
     }

@@ -14,7 +14,7 @@ import managers.BaseManager;
 import managers.CustomerManager;
 import managers.DataManager;
 import managers.ProductManager;
-import managers.PurchaseManager;
+import managers.OrderManager;
 import managers.interfaces.SaveManagerInterface;
 
 /**
@@ -25,12 +25,12 @@ public class App {
     public static boolean saveToBase;
     private final Scanner scanner;
     private final CustomerManager customerManager;
-    private final PurchaseManager purchaseManager;
+    private final OrderManager orderManager;
     private final ProductManager productManager;
     
     private final SaveManagerInterface saveManager;
    
-    private List<Orders>purchases;
+    private List<Orders>orders;
     private List<Customer>customers;
     private List<Product>products;
     
@@ -39,7 +39,7 @@ public class App {
         
         scanner = new Scanner(System.in);
         customerManager = new CustomerManager();
-        purchaseManager = new PurchaseManager();
+        orderManager = new OrderManager();
         productManager = new ProductManager();
         
         if(App.saveToBase){
@@ -48,7 +48,7 @@ public class App {
             saveManager = new DataManager();
         }
         
-        purchases = saveManager.loadPurchases();
+        orders = saveManager.loadPurchases();
         customers = saveManager.loadCustomers();
         products = saveManager.loadProducts();
     }
@@ -71,44 +71,44 @@ public class App {
                     repeat = false;
                     break;
                 case 1:
-                    System.out.println("1 - Add product");
+                    System.out.println("\n1 - Add product");
                     products.add(productManager.createProduct());
                     saveManager.saveProducts(products);
                     System.out.println(splitter);
                     break;
                 case 2:
-                    System.out.println("2 - Products list");
+                    System.out.println("\n2 - Products list");
                     productManager.printListProducts(products);
                     System.out.println(splitter);
                     break;
                 case 3:
-                    System.out.println("3 - Add customer");
+                    System.out.println("\n3 - Add customer");
                     customers.add(customerManager.createCustomer());
                     saveManager.saveCustomers(customers);
                     System.out.println(splitter);
                     break;
                 case 4:
-                    System.out.println(" 4 - Customers list");
+                    System.out.println("\n4 - Customers list");
                     customerManager.printListCustomers(customers);
                     System.out.println(splitter);
                     break;
                 case 5:
-                    System.out.println("5 - Manage wallets");
+                    System.out.println("\n5 - Manage wallets");
                     customerManager.addBalance(customers);
                     saveManager.saveCustomers(customers);
                     System.out.println(splitter);
                     break;
                 case 6:
-                    System.out.println("6 - Make shopping");
-                    purchases.add(purchaseManager.createPurchase(products, customers));
-                    saveManager.savePurchases(purchases);
+                    System.out.println("\n6 - Make shopping");
+                    orders.add(orderManager.createPurchase(products, customers));
+                    saveManager.savePurchases(orders);
                     saveManager.saveCustomers(customers);
                     saveManager.saveProducts(products);
                     System.out.println(splitter);
                     break;
                 case 7:
-                    System.out.println("7 - Orders history");
-                    purchaseManager.shopMoney(purchases);
+                    System.out.println("\n7 - Orders history");
+                    orderManager.shopMoney(orders);
                     System.out.println(splitter);
                     break;
                 default:

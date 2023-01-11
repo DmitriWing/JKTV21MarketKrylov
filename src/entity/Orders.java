@@ -26,10 +26,10 @@ public class Orders implements Serializable{
     @OneToOne(cascade = {CascadeType.MERGE})
     private Customer customer;
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
-    private Date takeOfProduct;
+    private Date orderDate;
     @OneToOne (cascade = {CascadeType.MERGE})
     private Product product;
-    private int amountCustomer;
+    private int soldItems;
     private int priceCustomer;
 
     public Orders() {
@@ -37,9 +37,9 @@ public class Orders implements Serializable{
 
     public Orders(Customer customer, Date takeOfProduct, Product product, int amountCustomer, int priceCustomer) {
         this.customer = customer;
-        this.takeOfProduct = takeOfProduct;
+        this.orderDate = takeOfProduct;
         this.product = product;
-        this.amountCustomer = amountCustomer;
+        this.soldItems = amountCustomer;
         this.priceCustomer = priceCustomer;
     }
     
@@ -59,12 +59,12 @@ public class Orders implements Serializable{
         this.customer = customer;
     }
 
-    public Date getTakeOfProduct() {
-        return takeOfProduct;
+    public Date getOrderDate() {
+        return orderDate;
     }
 
-    public void setTakeOfProduct(Date takeOfProduct) {
-        this.takeOfProduct = takeOfProduct;
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
     }
 
     public Product getProduct() {
@@ -75,12 +75,12 @@ public class Orders implements Serializable{
         this.product = product;
     }
 
-    public int getAmountCustomer() {
-        return amountCustomer;
+    public int getSoldItems() {
+        return soldItems;
     }
 
-    public void setAmountCustomer(int amountCustomer) {
-        this.amountCustomer = amountCustomer;
+    public void setSoldItems(int soldItems) {
+        this.soldItems = soldItems;
     }
 
     public int getPriceCustomer() {
@@ -93,15 +93,16 @@ public class Orders implements Serializable{
 
     @Override
     public String toString() {
-        return "Purchase{" 
+        return "Order{" 
                 + "\n"
                 +  customer 
                 + "\n"
-                + " takeOfProduct=" + takeOfProduct 
+                + " order date: " + orderDate 
+                + "\n"
                 + "," + product 
                 + "\n"
-                + "amountCustomer=" + amountCustomer 
-                + ", priceCustomer=" + priceCustomer 
+                + "quantity sold: " + soldItems 
+//                + ", priceCustomer: " + priceCustomer 
                 + '}'
                 + "\n";
     }

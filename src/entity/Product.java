@@ -21,7 +21,7 @@ public class Product implements Serializable{
     private Long id;
     private String title;
     private String producer;
-    private int amountShop;
+    private int inStoreQty;
     private int price;
 
     public Product() {
@@ -30,7 +30,7 @@ public class Product implements Serializable{
     public Product(String title, String manufacturer, int amountShop, int price) {
         this.title = title;
         this.producer = manufacturer;
-        this.amountShop = amountShop;
+        this.inStoreQty = amountShop;
         this.price = price;
     }
 
@@ -58,12 +58,12 @@ public class Product implements Serializable{
         this.producer = producer;
     }
 
-    public int getAmountShop() {
-        return amountShop;
+    public int getInStoreQty() {
+        return inStoreQty;
     }
 
-    public void setAmountShop(int amountShop) {
-        this.amountShop = amountShop;
+    public void setInStoreQty(int inStoreQty) {
+        this.inStoreQty = inStoreQty;
     }
 
     public int getPrice() {
@@ -77,10 +77,10 @@ public class Product implements Serializable{
     @Override
     public String toString() {
         return "Product{" 
-                + "title=" + title 
-                + ", manufacturer=" + producer 
-                + ", amountShop=" + amountShop 
-                + ", price=" + price 
+                + title 
+                + ", producer: " + producer 
+                + ", items in store: " + inStoreQty 
+                + ", price: " + price 
                 + '}';
     }
 

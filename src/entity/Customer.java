@@ -77,10 +77,10 @@ public class Customer implements Serializable{
     @Override
     public String toString() {
         return "Customer{" 
-                + "firstname=" + firstname 
-                + ", Lastname=" + lastname 
-                + ", phone=" + phone 
-                + ", money=" + money 
+                + "firstname: " + firstname 
+                + ", Lastname: " + lastname 
+                + ", phone: " + phone 
+                + ", money: " + money 
                 + '}';
     }
 

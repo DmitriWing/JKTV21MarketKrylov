@@ -17,12 +17,12 @@ import java.util.Scanner;
  *
  * @author pupil
  */
-public class PurchaseManager {
+public class OrderManager {
     private final Scanner scanner;
     private final ProductManager productManager;
     private final CustomerManager customerManager;
 
-    public PurchaseManager() {
+    public OrderManager() {
         scanner = new Scanner(System.in);
         productManager = new ProductManager();
         customerManager = new CustomerManager();
@@ -32,42 +32,42 @@ public class PurchaseManager {
         
         System.out.println("Customers list: ");
         customerManager.printListCustomers(customers);
-        System.out.println("Choose customer's number: ");
+        System.out.println("\nChoose customer's number: ");
         int numberCustomer = scanner.nextInt(); scanner.nextLine();
         
         System.out.println("Products list: ");
         productManager.printListProducts(products);
-        System.out.println("Choose product number: ");
+        System.out.println("\nChoose product number: ");
         int numberProduct = scanner.nextInt(); scanner.nextLine();
         
-        System.out.println("How many items would you like? ");
+        System.out.println("\nHow many items would you like? ");
         int countProduct = scanner.nextInt(); scanner.nextLine();
         
         Orders purchase = new Orders();
         purchase.setCustomer(customers.get(numberCustomer - 1));
-        purchase.setTakeOfProduct(new GregorianCalendar().getTime());
+        purchase.setOrderDate(new GregorianCalendar().getTime());
         purchase.setProduct(products.get(numberProduct - 1));
-        purchase.setAmountCustomer(countProduct);
+        purchase.setSoldItems(countProduct);
         purchase.setPriceCustomer(products.get(numberProduct - 1).getPrice());
-        products.get(numberProduct - 1).setAmountShop(products.get(numberProduct - 1).getAmountShop() - countProduct);
+        products.get(numberProduct - 1).setInStoreQty(products.get(numberProduct - 1).getInStoreQty() - countProduct);
         customers.get(numberCustomer - 1).setMoney(customers.get(numberCustomer - 1).getMoney() - countProduct * products.get(numberProduct - 1).getPrice());
         
         return purchase;
     }
     
-     public void shopMoney(List<Orders>purchases) {
+     public void shopMoney(List<Orders>orders) {
         int shopMoney = 0; 
         
-        for (int i = 0; i < purchases.size(); i++) {
-            // беру цену из purchases
-            shopMoney = shopMoney + purchases.get(i).getAmountCustomer() * purchases.get(i).getPriceCustomer();
+        for (int i = 0; i < orders.size(); i++) {
+            // беру цену из orders
+            shopMoney = shopMoney + orders.get(i).getSoldItems() * orders.get(i).getPriceCustomer();
             // беру цену из product
-//            shopMoney = shopMoney + purchases.get(i).getAmountCustomer() * purchases.get(i).getProduct().getPrice();
+//            shopMoney = shopMoney + orders.get(i).getAmountCustomer() * orders.get(i).getProduct().getPrice();
             
         }
         System.out.printf("%nTotal turnover: %d eur%n",shopMoney);
         System.out.println();
-         System.out.println(purchases);
-        Arrays.toString(purchases.toArray());
+        System.out.println(orders);
+        Arrays.toString(orders.toArray());
     }
 }
