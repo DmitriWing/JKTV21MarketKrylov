@@ -7,7 +7,7 @@ package managers;
 
 import entity.Customer;
 import entity.Product;
-import entity.Purchase;
+import entity.Orders;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -99,7 +99,7 @@ public class DataManager implements SaveManagerInterface{
     }
 
     @Override
-    public void savePurchases(List<Purchase> purchases) {
+    public void savePurchases(List<Orders> purchases) {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(FILENAME_PURCHASES);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
@@ -113,12 +113,12 @@ public class DataManager implements SaveManagerInterface{
     }
      
     @Override
-    public List<Purchase> loadPurchases() {
-        List<Purchase>  purchases = new ArrayList<>();
+    public List<Orders> loadPurchases() {
+        List<Orders>  purchases = new ArrayList<>();
         try {
             FileInputStream fileInputStream = new FileInputStream(FILENAME_PURCHASES);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-            purchases = (List<Purchase>) objectInputStream.readObject();
+            purchases = (List<Orders>) objectInputStream.readObject();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(DataManager.class.getName()).log(Level.SEVERE, "Нет такого файла", ex);
         } catch (IOException ex) {

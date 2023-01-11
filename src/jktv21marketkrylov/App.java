@@ -8,7 +8,7 @@ package jktv21marketkrylov;
 import java.util.Scanner;
 import entity.Customer;
 import entity.Product;
-import entity.Purchase;
+import entity.Orders;
 import java.util.List;
 import managers.BaseManager;
 import managers.CustomerManager;
@@ -30,7 +30,7 @@ public class App {
     
     private final SaveManagerInterface saveManager;
    
-    private List<Purchase>purchases;
+    private List<Orders>purchases;
     private List<Customer>customers;
     private List<Product>products;
     
@@ -54,18 +54,16 @@ public class App {
     }
     
     public void run(){
+        String splitter = "\n------------------------------------------------------------------------------";
         boolean repeat = true;
         do{
-            System.out.println("Функции приложения:");
-            System.out.println("0. Выход из программы");
-            System.out.println("1. Добавить продукт");
-            System.out.println("2. Список продавемых продуктов");
-            System.out.println("3. Добавить покупателя");
-            System.out.println("4. Список зарегистрированных покупателей");
-            System.out.println("5. Покупка покупателем продукта");
-            System.out.println("6. Оборот магазина за все время работы");
-            System.out.println("7. Добавить денег покупателю");
-            System.out.print("Выберите номер функции: ");
+            System.out.println("                        APP OPTIONS:");
+            System.out.println("0 - Quit");
+            System.out.println("1 - Add product     |   2 - Products list    |" );
+            System.out.println("3 - Add customer    |   4 - Customers list   |    5 - Manage wallets");
+            System.out.println("6 - Make shopping   |   7 - Orders history");
+            System.out.print("Choose options number: ");
+            
             int task = scanner.nextInt();
             scanner.nextLine();
             switch (task){
@@ -73,44 +71,51 @@ public class App {
                     repeat = false;
                     break;
                 case 1:
-                    System.out.println("1. Добавить продукт");
+                    System.out.println("1 - Add product");
                     products.add(productManager.createProduct());
                     saveManager.saveProducts(products);
+                    System.out.println(splitter);
                     break;
                 case 2:
-                    System.out.println("2. Список продавемых продуктов");
+                    System.out.println("2 - Products list");
                     productManager.printListProducts(products);
+                    System.out.println(splitter);
                     break;
                 case 3:
-                    System.out.println("3. Добавить покупателя");
+                    System.out.println("3 - Add customer");
                     customers.add(customerManager.createCustomer());
                     saveManager.saveCustomers(customers);
+                    System.out.println(splitter);
                     break;
                 case 4:
-                    System.out.println("4. Список зарегистрированных покупателей");
+                    System.out.println(" 4 - Customers list");
                     customerManager.printListCustomers(customers);
+                    System.out.println(splitter);
                     break;
                 case 5:
-                    System.out.println("5. Покупка покупателем продукта");
+                    System.out.println("5 - Manage wallets");
+                    customerManager.addBalance(customers);
+                    saveManager.saveCustomers(customers);
+                    System.out.println(splitter);
+                    break;
+                case 6:
+                    System.out.println("6 - Make shopping");
                     purchases.add(purchaseManager.createPurchase(products, customers));
                     saveManager.savePurchases(purchases);
                     saveManager.saveCustomers(customers);
                     saveManager.saveProducts(products);
-                    break;
-                case 6:
-                    System.out.println("6. Оборот магазина за все время работы");
-                    purchaseManager.shopMoney(purchases);
+                    System.out.println(splitter);
                     break;
                 case 7:
-                    System.out.println("7. Добавить денег покупателю");
-                    customerManager.addBalance(customers);
-                    saveManager.saveCustomers(customers);
+                    System.out.println("7 - Orders history");
+                    purchaseManager.shopMoney(purchases);
+                    System.out.println(splitter);
                     break;
                 default:
-                    System.out.println("Выберите номер функции из списка!");
+                    System.out.println("There is no function with such number\nChoose function number from the list!\n---------------------------------------------------------------------------");
             }
         }while(repeat);
-        System.out.println("Пока!");
+        System.out.println("GOOD BYE!");
     }
     
    

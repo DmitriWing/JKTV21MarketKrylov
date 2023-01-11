@@ -7,7 +7,7 @@ package managers;
 
 import entity.Customer;
 import entity.Product;
-import entity.Purchase;
+import entity.Orders;
 import java.util.Arrays;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -28,22 +28,22 @@ public class PurchaseManager {
         customerManager = new CustomerManager();
     }
 
-    public Purchase createPurchase(List<Product> products, List<Customer> customers) {
+    public Orders createPurchase(List<Product> products, List<Customer> customers) {
         
-        System.out.println("Список покупателей: ");
+        System.out.println("Customers list: ");
         customerManager.printListCustomers(customers);
-        System.out.println("Выберите номер покупателя из списка: ");
+        System.out.println("Choose customer's number: ");
         int numberCustomer = scanner.nextInt(); scanner.nextLine();
         
-        System.out.println("Список продуктов: ");
+        System.out.println("Products list: ");
         productManager.printListProducts(products);
-        System.out.println("Выберите номер продукта из списка: ");
+        System.out.println("Choose product number: ");
         int numberProduct = scanner.nextInt(); scanner.nextLine();
         
-        System.out.println("Введите количество покупаемого продукта: ");
+        System.out.println("How many items would you like? ");
         int countProduct = scanner.nextInt(); scanner.nextLine();
         
-        Purchase purchase = new Purchase();
+        Orders purchase = new Orders();
         purchase.setCustomer(customers.get(numberCustomer - 1));
         purchase.setTakeOfProduct(new GregorianCalendar().getTime());
         purchase.setProduct(products.get(numberProduct - 1));
@@ -55,7 +55,7 @@ public class PurchaseManager {
         return purchase;
     }
     
-     public void shopMoney(List<Purchase>purchases) {
+     public void shopMoney(List<Orders>purchases) {
         int shopMoney = 0; 
         
         for (int i = 0; i < purchases.size(); i++) {
@@ -65,7 +65,7 @@ public class PurchaseManager {
 //            shopMoney = shopMoney + purchases.get(i).getAmountCustomer() * purchases.get(i).getProduct().getPrice();
             
         }
-        System.out.printf("%nОборот магазина за все время работы: %d eur%n",shopMoney);
+        System.out.printf("%nTotal turnover: %d eur%n",shopMoney);
         System.out.println();
          System.out.println(purchases);
         Arrays.toString(purchases.toArray());

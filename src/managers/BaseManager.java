@@ -7,7 +7,7 @@ package managers;
 
 import entity.Customer;
 import entity.Product;
-import entity.Purchase;
+import entity.Orders;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -66,10 +66,10 @@ public class BaseManager implements SaveManagerInterface{
    }
    
     @Override
-   public void savePurchases(List<Purchase> purchases) {
+   public void savePurchases(List<Orders> purchases) {
         em.getTransaction().begin();
        for (int i = 0; i < purchases.size(); i++) {
-           Purchase purchase = purchases.get(i);
+           Orders purchase = purchases.get(i);
            if(purchase.getId() == null){
                 em.persist(purchase);
             }else{
@@ -80,8 +80,8 @@ public class BaseManager implements SaveManagerInterface{
    }
    
     @Override
-   public List<Purchase> loadPurchases() {
-       return em.createQuery("SELECT pu FROM Purchase pu").getResultList();
+   public List<Orders> loadPurchases() {
+       return em.createQuery("SELECT pu FROM Orders pu").getResultList();
    }
     
 }

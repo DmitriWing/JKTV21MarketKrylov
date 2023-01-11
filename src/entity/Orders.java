@@ -20,7 +20,7 @@ import javax.persistence.Temporal;
  * @author pupil
  */
 @Entity
-public class Purchase implements Serializable{
+public class Orders implements Serializable{
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToOne(cascade = {CascadeType.MERGE})
@@ -32,10 +32,10 @@ public class Purchase implements Serializable{
     private int amountCustomer;
     private int priceCustomer;
 
-    public Purchase() {
+    public Orders() {
     }
 
-    public Purchase(Customer customer, Date takeOfProduct, Product product, int amountCustomer, int priceCustomer) {
+    public Orders(Customer customer, Date takeOfProduct, Product product, int amountCustomer, int priceCustomer) {
         this.customer = customer;
         this.takeOfProduct = takeOfProduct;
         this.product = product;
